@@ -1,0 +1,40 @@
+{
+  "name": "base-node-api-server",
+  "version": "0.0.1",
+  "description": "A simple starter server api for nodejs. Uses express",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha src/**/*.spec.js",
+    "integration-test": "mocha integration-tests/**/*.spec.js",
+    "start": "nodemon ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexbowes/base-node-api-server.git"
+  },
+  "author": "Alex Bowes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexbowes/base-node-api-server/issues"
+  },
+  "homepage": "https://github.com/alexbowes/base-node-api-server#readme",
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.5.0",
+    "node-mocks-http": "^1.6.4",
+    "nodemon": "^1.11.0",
+    "sinon": "^3.2.0",
+    "supertest": "^3.0.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "express-validator": "^3.2.1",
+    "faker": "^4.1.0",
+    "helmet": "^3.8.1",
+    "morgan": "^1.8.2",
+    "rotating-file-stream": "^1.2.2",
+    "uuid": "^3.1.0"
+  }
+}

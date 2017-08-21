@@ -1,0 +1,18 @@
+# EditorConfig allows for different editors to share the same rules. See http://EditorConfig.org
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+# Set default charset, indent and spaces
+[*.{js,json}]
+charset = utf-8
+indent_style = space
+indent_size = 4
+
+# Keep defaults for package.json and .travis.yml
+[{package.json,.travis.yml}]
+indent_style = space
+indent_size = 2
