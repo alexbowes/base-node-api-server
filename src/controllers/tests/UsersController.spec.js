@@ -3,7 +3,7 @@ const sinon = require('sinon');
 const httpMocks = require('node-mocks-http');
 const expressValidator = require('express-validator')();
 const performRequestValidation = require('../../middlewares/PerformRequestValidation');
-const Errors = require('../../utils/Errors');
+const Errors = require('../../errors/Errors');
 const uuid = require('uuid/v4');
 const expect = chai.expect;
 

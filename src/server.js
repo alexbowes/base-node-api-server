@@ -1,39 +1,33 @@
 const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
 const path = require('path');
-const rfs = require('rotating-file-stream');
-const helmet = require('helmet')
+const helmet = require('helmet');
+const compression = require('compression');
+const cors = require('cors');
 const expressValidator = require('express-validator');
-const Errors = require('./utils/Errors');
+
+const Errors = require('./errors/Errors');
 const performRequestValidation = require('./middlewares/PerformRequestValidation');
 const errorHandler = require('./middlewares/ErrorHandler');
+const environment = require('./utils/environment');
+const logger = require('./utils/logger');
+const loggerSetup = logger.Setup();
+
 
 let app = express();
+loggerSetup.setupApplicationLogs();
 
-// Set (and create if required) log dir to ../logs 
-let logDir = path.resolve(__dirname, '../logs');
-fs.existsSync(logDir) || fs.mkdirSync(logDir);
-
-// Create a rotating write stream for access log
-let accessLogStream = rfs('access.log', {
-    interval: '1d', // rotate daily
-    path: logDir
-});
-
-// Set local variables than can be access in any req
-app.locals.CONFIG_ENV = {
-    port: process.env.PORT || 3000
-};
 
 // Load Middlewares
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
-app.use(helmet())
-app.use(morgan('combined', { stream: accessLogStream }));
-app.use( performRequestValidation ); //must come after express validator
+app.use(helmet());
+app.use(compression());
+app.use(cors());
+app.use(loggerSetup.accessLogs());
+app.use(performRequestValidation); //must come after express validator
 
 // Load V1 Routes
 fs.readdirSync(`${__dirname}/routes/v1/`).forEach(function (filename) {
@@ -43,12 +37,11 @@ fs.readdirSync(`${__dirname}/routes/v1/`).forEach(function (filename) {
 });
 
 // Load Error Middlewares (Note MUST be last)
-app.use( errorHandler );
-
+app.use(errorHandler);
 
 // Start
-app.listen(app.locals.CONFIG_ENV.port, function () {
-    console.log(`Server is listening on port ${app.locals.CONFIG_ENV.port}`);
+app.listen(environment.port(), function () {
+     logger.info(`Server is listening on port ${environment.port()}`);
 });
 
 

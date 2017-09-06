@@ -1,4 +1,4 @@
-const Errors = require('../utils/Errors');
+const Errors = require('../errors/Errors');
 
 function appendPerformValidationToRequest(req, res, next) {
     req.performValidation = function performValidation() {

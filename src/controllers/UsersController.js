@@ -3,7 +3,7 @@
 const express = require('express');
 
 const User = require('../models/User.js');
-const Errors = require('../utils/Errors');
+const Errors = require('../errors/Errors');
 
 
 class UsersController {
