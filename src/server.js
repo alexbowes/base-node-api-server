@@ -11,7 +11,7 @@ const Errors = require('./errors/Errors');
 const performRequestValidation = require('./middlewares/PerformRequestValidation');
 const errorHandler = require('./middlewares/ErrorHandler');
 const environment = require('./utils/environment');
-const logger = require('./utils/logger');
+const logger = require('./utils/Logger');
 const loggerSetup = logger.Setup();
 
 
