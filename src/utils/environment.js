@@ -4,9 +4,8 @@
  */
 
 const NODE_ENV = process.env.NODE_ENV;
-const PORT = process.env.PORT || 3000;
 const LOG_LEVEL = process.env.LOG_LEVEL || "info";
-
+const PORT = 8080;
 
 module.exports = {
     port: function(){ 

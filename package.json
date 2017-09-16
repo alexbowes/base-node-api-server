@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha src/**/*.spec.js",
     "integration-test": "mocha integration-tests/**/*.spec.js",
-    "start": "nodemon ./src/server.js"
+    "dev": "nodemon ./src/server.js",
+    "start": "node ./src/server.js"
   },
   "repository": {
     "type": "git",
