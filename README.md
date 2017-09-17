@@ -5,6 +5,11 @@ Most 'starter' node api packages are extremely simple. They allow one to quickly
 
 This basic Node API server aims to be a starter pack for developers with some understanding of Node already. It uses the Express framework to build out a basic rest API in a maintainable way. Logging, error handling, unit testing and integration testing are all built in. The 'backend' is mocked out using the [faker](https://www.npmjs.com/package/faker) library.
 
+Merges into master will trigger a docker build that publishes to [Docker Hub](https://hub.docker.com/r/alexgbowes/base-node-api-server/). Docker images can be run like:
+```shell
+docker run --name my-server -d -p 8080:8080 alexgbowes/base-node-api-server
+```
+
 ## Code Design:
 
 - **Models** encapsulate the data. Each model exposes methods that allow retrieval and manipulation of data. Models are expected to return promises. Application exceptions and status codes are not exposed at this level. 
@@ -137,15 +142,14 @@ npm run integration-test
 - Access logging with Morgan
 - Application logging to files with Winston
 - Compression, CORS, Http header security with [Helmet](https://www.npmjs.com/package/helmet)
+- Automated CI docker builds published to dockerhub via TravisCI
 - *.editorConfig* for consistent code style
 
 ### Todo
 - SSL Only
 - Rate Limiting
-- Deploy to Docker
-- Integrate with Travis for CI/CD to docker hub
 - JWT Authorization. Use third party OAuth as Authentication
 - Document API with Swagger / something else
 - Move to using import vs require
-- handle NODE_ENV correctly
+
 
