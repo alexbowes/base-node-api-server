@@ -8,7 +8,8 @@
     "integration-test": "mocha integration-tests/**/*.spec.js",
     "dev": "nodemon ./src/server.js",
     "start": "node ./src/server.js",
-    "build": "docker build -t base-node-api-server ."
+    "build": "docker build -t $DOCKER_USERNAME/base-node-api-server .",
+    "publish": "docker login -u=\"$DOCKER_USERNAME\" -p=\"$DOCKER_PASSWORD\"; docker push $DOCKER_USERNAME/base-node-api-server;"
   },
   "repository": {
     "type": "git",
