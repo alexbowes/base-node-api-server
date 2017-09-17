@@ -1,3 +1,15 @@
+sudo: required
+
 language: node_js
+
+services:
+  - docker
+  
 node_js:
   - "stable"
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    npm run build;
+    npm run publish;
+    fi
